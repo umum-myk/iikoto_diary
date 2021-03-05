@@ -19,47 +19,63 @@ import utils.DBUtil;
  */
 @WebServlet("/reports/index")
 public class ReportsIndexServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReportsIndexServlet() {
-        super();
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ReportsIndexServlet() {
+		super();
+	}
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = DBUtil.createEntityManager();
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		EntityManager em = DBUtil.createEntityManager();
 
-        int page;
-        try{
-            page = Integer.parseInt(request.getParameter("page"));
-        } catch(Exception e) {
-            page = 1;
-        }
-        List<Report> reports = em.createNamedQuery("getAllReports", Report.class)
-                                  .setFirstResult(15 * (page - 1))
-                                  .setMaxResults(15)
-                                  .getResultList();
+		//Report report_id = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
-        long reports_count = (long)em.createNamedQuery("getReportsCount", Long.class)
-                                     .getSingleResult();
+		int page;
+		try{
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch(Exception e) {
+			page = 1;
+		}
+		List<Report> reports = em.createNamedQuery("getAllReports", Report.class)
+				.setFirstResult(15 * (page - 1))
+				.setMaxResults(15)
+				.getResultList();
 
-        em.close();
+		long reports_count = (long)em.createNamedQuery("getReportsCount", Long.class)
+				.getSingleResult();
 
-        request.setAttribute("reports", reports);
-        request.setAttribute("reports_count", reports_count);
-        request.setAttribute("page", page);
-        if(request.getSession().getAttribute("flush") != null) {
-            request.setAttribute("flush", request.getSession().getAttribute("flush"));
-            request.getSession().removeAttribute("flush");
-        }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/index.jsp");
-        rd.forward(request, response);
-    }
+		//List<Integer> yoines = em.createNamedQuery("getAllYoines", Integer.class)
+		//        .setFirstResult(15 * (page - 1))
+		//        .setMaxResults(15)
+		//        .getResultList();
+
+
+		//レポートごとのいいねカウントクエリ
+		//long yoines_count = (long)em.createNamedQuery("getYoinesCount", Long.class) //よくわからず真似して書いた
+				//.setParameter("report_id", report_id)
+				//.getSingleResult();
+
+		em.close();
+
+		request.setAttribute("reports", reports);
+		//request.setAttribute("yoines", yoines);
+		request.setAttribute("reports_count", reports_count);
+		//request.setAttribute("yoines_count", yoines_count);
+		request.setAttribute("page", page);
+		if(request.getSession().getAttribute("flush") != null) {
+			request.setAttribute("flush", request.getSession().getAttribute("flush"));
+			request.getSession().removeAttribute("flush");
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/index.jsp");
+		rd.forward(request, response);
+	}
 
 }

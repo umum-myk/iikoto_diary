@@ -49,8 +49,8 @@ public class ReportsCreateServlet extends HttpServlet {
             if(rd_str != null && !rd_str.equals("")) {
                 report_date = Date.valueOf(request.getParameter("report_date"));
             }
-            r.setReport_date(report_date);
 
+            r.setReport_date(report_date);
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
 
@@ -58,11 +58,12 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+
             List<String> errors = ReportValidator.validate(r);
             if(errors.size() > 0) {
                 em.close();
 
-                request.setAttribute("_token", request.getSession().getId());
+                //request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("report", r);
                 request.setAttribute("errors", errors);
 
@@ -79,5 +80,4 @@ public class ReportsCreateServlet extends HttpServlet {
             }
         }
     }
-
 }

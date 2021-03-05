@@ -34,13 +34,20 @@
                             <td>
                                 <fmt:formatDate value="${report.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
-                        </tr>
+                        <tr>
                     </tbody>
                 </table>
 
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
-                </c:if>
+				</c:if>
+
+				<!--いいねボタンが押されると「1」が送られる-->
+				<c:if test="${sessionScope.login_employee.id != report.employee.id}">
+					<form method="POST" action="<c:url value="/create/like" />">
+					<input type="hidden" name="1" value=1>
+					<button>いいね</button></form>
+				</c:if>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>

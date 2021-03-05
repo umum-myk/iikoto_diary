@@ -2,9 +2,11 @@ package models;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name = "reports")
@@ -32,7 +35,11 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "getMyReportsCount",
         query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
-    )
+    ),
+    @NamedQuery(
+            name = "getYoinesCount",
+            query = "SELECT r FROM Like AS r WHERE r.report_id = :report_id"//レポートごとの集計
+    ),
 })
 @Entity
 public class Report {
@@ -61,7 +68,10 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    public Integer getId() {
+    @OneToMany(mappedBy = "report_id", fetch = FetchType.EAGER)
+    private List<Like> yoines;
+
+	public Integer getId() {
         return id;
     }
 
@@ -116,4 +126,13 @@ public class Report {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+	public List<Like> getYoines() {
+		return yoines;
+	}
+
+	public void setYoines(List<Like> yoines) {
+		this.yoines = yoines;
+	}
+
 }
