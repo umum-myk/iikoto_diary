@@ -35,11 +35,7 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "getMyReportsCount",
         query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
-    ),
-    @NamedQuery(
-            name = "getYoinesCount",
-            query = "SELECT r FROM Like AS r WHERE r.report_id = :report_id"//レポートごとの集計
-    ),
+    )
 })
 @Entity
 public class Report {

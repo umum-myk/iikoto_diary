@@ -25,7 +25,8 @@
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
-						<td class="yoines_count"><c:out value="${fn:length (report.yoines)}" /></td>
+						<td class="yoines_count"><c:if test="${fn:length (report.yoines) != 0}"><c:out value="${fn:length (report.yoines)}" /></c:if></td>
+
 					</tr>
                 </c:forEach>
             </tbody>

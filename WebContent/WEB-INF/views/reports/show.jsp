@@ -6,7 +6,6 @@
         <c:choose>
             <c:when test="${report != null}">
                 <h2>日報　詳細ページ</h2>
-
                 <table>
                     <tbody>
                         <tr>
@@ -46,7 +45,7 @@
 				<c:if test="${sessionScope.login_employee.id != report.employee.id}">
 					<form method="POST" action="<c:url value="/create/like" />">
 					<input type="hidden" name="1" value=1>
-					<button>いいね</button></form>
+					<button class="heart-button">いいね</button></form>
 				</c:if>
             </c:when>
             <c:otherwise>
