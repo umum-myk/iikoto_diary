@@ -1,6 +1,6 @@
 package models;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +32,22 @@ import lombok.Setter;
 @NamedQuery(
         name = "getDiarysCount",
         query = "SELECT COUNT(d) FROM Diary AS d"
+    ),
+@NamedQuery(
+        name = "getMonth",
+        query = "SELECT DISTINCT d FROM Diary AS d GROUP BY d.createMonth"
+    ),
+@NamedQuery(
+        name = "getDiarysMonth",
+        query = "SELECT d FROM Diary AS d  WHERE d.createMonth = :MonthFind"
+    ),
+@NamedQuery(
+        name = "getSortMonth",
+        query = "SELECT d FROM Diary AS d  WHERE d.createMonth = :MonthFind AND d.iine = 1"
+    ),
+@NamedQuery(
+        name = "getDiarysSearch",
+        query = "SELECT d FROM Diary AS d  WHERE d.bodytext LIKE :MonthFind "
     )
 })
 public class Diary {
@@ -45,6 +61,20 @@ public class Diary {
     private String bodytext;
 
     //投稿日時
-    @Column(name = "create_datetime", nullable = false)
-    private Timestamp createDatetime;
+    @Column(name = "create_date", nullable = false)
+    private Date createDate;
+
+    //月集計用
+    @Column(name = "create_month", nullable = false)
+    private Integer createMonth;
+
+    //年集計用
+    @Column(name = "create_year", nullable = false)
+    private Integer createYear;
+
+    //いいね
+    @Column(name = "iine", nullable = false)
+    private Integer iine ;
+
+
 }

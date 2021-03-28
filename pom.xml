@@ -63,5 +63,10 @@
             <artifactId>jquery</artifactId>
             <version>3.4.1</version>
         </dependency>
+	<dependency>
+		<groupId>org.webjars</groupId>
+		<artifactId>popper.js</artifactId>
+		<version>1.14.1</version>
+	</dependency>
 	</dependencies>
 </project>

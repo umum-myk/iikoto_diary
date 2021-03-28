@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +9,56 @@
         <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
         <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 
-<script src="webjars/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<script src="webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="webjars/popper.js/1.14.1/popper.min.js"></script>
 <script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<c:url value="/index" />">いいこと日記</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<c:url value="/index" />">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+            <c:forEach var="month" items="${month}" varStatus="status">
+            <form method="GET" class="dropdown-item" action="<c:url value="/month" />" class="dropdown-item">
+            <a href="<c:url value='/month?mon=${month.createMonth}' />">
+             <fmt:formatDate value='${month.createDate}' pattern='yyyy-MM' /></a></form>
+            </c:forEach>
+            </li>
+          </ul>
+        </li>
+      </ul>
+          </div>
+
+
+  </div>
+</nav>
+
+
+
+
             <div id="content">
                 ${param.content}
             </div>
-            <div id="footer">
+            <div id="footer" class="fixed-bottom">
                 by Mayuka Ui.
             </div>
-</body>
+
+
 </html>

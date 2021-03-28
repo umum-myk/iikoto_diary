@@ -1,7 +1,8 @@
-package controllers.toppage;
+package controllers;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -40,13 +41,22 @@ public class TopPageIndexServlet extends HttpServlet {
 
 		d.setBodytext(request.getParameter("iikoto"));
 
-		Timestamp createDatetime = new Timestamp(System.currentTimeMillis());
-		d.setCreateDatetime(createDatetime);
+
+		//Date、Month、Yearの格納
+		Date createDate = new Date(System.currentTimeMillis());
+		Integer createMonth = new Integer(Calendar.getInstance().get(Calendar.MONTH)+1);
+		Integer createYear = new Integer(Calendar.getInstance().get(Calendar.YEAR));
+		d.setCreateDate(createDate);
+		d.setCreateMonth(createMonth);
+		d.setCreateYear(createYear);
+
+		d.setIine(0);
 
 		em.getTransaction().begin();
 		em.persist(d);
 		em.getTransaction().commit();
 		em.close();
+
 
         response.sendRedirect(request.getContextPath() + "/index");
 
@@ -73,11 +83,17 @@ public class TopPageIndexServlet extends HttpServlet {
 		long diarys_count = (long)em.createNamedQuery("getDiarysCount", Long.class)
 				.getSingleResult();
 
+		//月ページへのリンク作成用
+		List<Diary> month = em.createNamedQuery("getMonth", Diary.class)
+				.getResultList();
+
+
 		em.close();
 
 		request.setAttribute("diarys", diarys);
 		request.setAttribute("diarys_count", diarys_count);
 		request.setAttribute("page", page);
+		request.setAttribute("month", month);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
 		rd.forward(request, response);
