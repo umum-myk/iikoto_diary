@@ -47,7 +47,11 @@ import lombok.Setter;
     ),
 @NamedQuery(
         name = "getDiarysSearch",
-        query = "SELECT d FROM Diary AS d  WHERE d.bodytext LIKE :MonthFind "
+        query = "SELECT d FROM Diary AS d  WHERE d.bodytext LIKE :IndexFind "
+    ),
+@NamedQuery(
+        name = "getDiarysSearchNumber",
+        query = "SELECT COUNT(d) FROM Diary AS d  WHERE d.bodytext LIKE :IndexFind "
     )
 })
 public class Diary {

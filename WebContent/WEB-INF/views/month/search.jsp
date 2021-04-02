@@ -4,7 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="../layout/app.jsp">
 	<c:param name="content">
-
+        <c:if test="${flush != null}">
+            <div id="flush_success">
+                <c:out value="${flush}件が該当しました" ></c:out>
+            </div>
+        </c:if>
 
 		<table id="diary_list">
 			<tbody>

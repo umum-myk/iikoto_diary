@@ -46,21 +46,33 @@ public class SearchViewServlet extends HttpServlet {
 
 		//月毎のリスト
 		List<Diary> diarys_search = em.createNamedQuery("getDiarysSearch", Diary.class)
-				.setParameter("MonthFind", "%" +search+ "%")
+				.setParameter("IndexFind", "%" +search+ "%")
 				.setFirstResult(10 * (page - 1))
 				.setMaxResults(10)
 				.getResultList();
+
+		long search_number = (long)em.createNamedQuery("getDiarysSearchNumber", Long.class)
+				.setParameter("IndexFind", "%" +search+ "%")
+				.getSingleResult();
 
 		long diarys_count = (long)em.createNamedQuery("getDiarysCount", Long.class)
 				.getSingleResult();
 
 
 		em.close();
+        request.getSession().setAttribute("flush", search_number);
 
 		request.setAttribute("diarys_search", diarys_search);
 		request.setAttribute("diarys_count", diarys_count);
 		request.setAttribute("page", page);
 		request.setAttribute("search", search);
+
+        // フラッシュメッセージがセッションスコープにセットされていたら
+        if(request.getSession().getAttribute("flush") != null) {
+            // セッションスコープ内のフラッシュメッセージをリクエストスコープに保存し、セッションスコープからは削除する
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/month/search.jsp");
 		rd.forward(request, response);
