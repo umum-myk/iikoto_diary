@@ -13,8 +13,7 @@
 					<th class="diary_date">日付</th>
 					<th class="diary_iine">スタンプ</th>
 				</tr>
-				<c:forEach var="sort" items="${sort_month}"
-					varStatus="status">
+				<c:forEach var="sort" items="${sort_month}" varStatus="status">
 					<tr class="row${status.count % 2}">
 						<td class="diary_text">${sort.bodytext}</td>
 						<td class="diary_date"><fmt:formatDate
@@ -41,23 +40,25 @@
 			</tbody>
 		</table>
 
-<nav aria-label="...">
-  <ul class="pagination pagination-lg">
-			<li>（全 ${diarys_count} 件）</li>
-			<c:forEach var="i" begin="1" end="${((diarys_count - 1) / 10) + 1}"
-				step="1">
-				<c:choose>
-					<c:when test="${i == page}">
-                    <li class="page-item disabled"><a class="page-link"><c:out value="${i}" /></a></li>&nbsp;
+		<nav aria-label="...">
+			<ul class="pagination pagination-lg">
+				<li>（全 ${diarys_count} 件）</li>
+				<c:forEach var="i" begin="1" end="${((diarys_count - 1) / 10) + 1}"
+					step="1">
+					<c:choose>
+						<c:when test="${i == page}">
+							<li class="page-item disabled"><a class="page-link"><c:out
+										value="${i}" /></a></li>&nbsp;
                     </c:when>
-					<c:otherwise>
-					<li class="page-item">
-						<a class="page-link" href="<c:url value='/sort?page=${i}&mon=${mon}' />"><c:out value="${i}" /></a></li>&nbsp;
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='/sort?page=${i}&mon=${mon}' />"><c:out
+										value="${i}" /></a></li>&nbsp;
                     </c:otherwise>
-				</c:choose>
-			</c:forEach>
-  </ul>
-</nav>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</nav>
 
 		<p>
 			<a href="<c:url value="/index" />">一覧に戻る</a>

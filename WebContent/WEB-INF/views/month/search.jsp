@@ -4,11 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="../layout/app.jsp">
 	<c:param name="content">
-        <c:if test="${flush != null}">
-            <div id="flush_success">
-                <c:out value="${flush}件が該当しました" ></c:out>
-            </div>
-        </c:if>
+		<c:if test="${flush != null}">
+			<div id="flush_success">
+				<c:out value="${flush}件が該当しました"></c:out>
+			</div>
+		</c:if>
 
 		<table id="diary_list">
 			<tbody>
@@ -17,8 +17,7 @@
 					<th class="diary_date">日付</th>
 					<th class="diary_iine">スタンプ</th>
 				</tr>
-				<c:forEach var="search" items="${diarys_search}"
-					varStatus="status">
+				<c:forEach var="search" items="${diarys_search}" varStatus="status">
 					<tr class="row${status.count % 2}">
 						<td class="diary_text">${search.bodytext}</td>
 						<td class="diary_date"><fmt:formatDate
@@ -55,7 +54,8 @@
 						<c:out value="${i}" />&nbsp;
                     </c:when>
 					<c:otherwise>
-						<a href="<c:url value='/search?page=${i}&mon=${mon}' />"><c:out value="${i}" /></a>&nbsp;
+						<a href="<c:url value='/search?page=${i}&mon=${mon}' />"><c:out
+								value="${i}" /></a>&nbsp;
                     </c:otherwise>
 				</c:choose>
 			</c:forEach>

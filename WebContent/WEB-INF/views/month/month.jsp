@@ -5,15 +5,17 @@
 <c:import url="../layout/app.jsp">
 	<c:param name="content">
 
-<div class="pb-3">
-    <div class="row">
-<div class="col-10"></div>
-<div class="col-2">
-		<form method="GET" action="<c:url value="/sort" />">
-			<button class="btn btn-outline-success" type="submit">スタンプ付でソート</button>
-				<input type="hidden" name="mon" value="${mon}">
-		</form>
-</div></div></div>
+		<div class="pb-3">
+			<div class="row">
+				<div class="col-10"></div>
+				<div class="col-2">
+					<form method="GET" action="<c:url value="/sort" />">
+						<button class="btn btn-outline-success" type="submit">スタンプ付でソート</button>
+						<input type="hidden" name="mon" value="${mon}">
+					</form>
+				</div>
+			</div>
+		</div>
 
 
 		<table id="diary_list">
@@ -51,23 +53,25 @@
 			</tbody>
 		</table>
 
-<nav aria-label="...">
-  <ul class="pagination pagination-lg">
-			 <li>（全 ${diarys_count} 件）</li>
-			<c:forEach var="i" begin="1" end="${((diarys_count - 1) / 10) + 1}"
-				step="1">
-				<c:choose>
-					<c:when test="${i == page}">
-                    <li class="page-item disabled"><a class="page-link"><c:out value="${i}" /></a></li>&nbsp;
+		<nav aria-label="...">
+			<ul class="pagination pagination-lg">
+				<li>（全 ${diarys_count} 件）</li>
+				<c:forEach var="i" begin="1" end="${((diarys_count - 1) / 10) + 1}"
+					step="1">
+					<c:choose>
+						<c:when test="${i == page}">
+							<li class="page-item disabled"><a class="page-link"><c:out
+										value="${i}" /></a></li>&nbsp;
                     </c:when>
-					<c:otherwise>
-					<li class="page-item">
-						<a class="page-link" href="<c:url value='/month?page=${i}&mon=${mon}' />"><c:out value="${i}" /></a></li>&nbsp;
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='/month?page=${i}&mon=${mon}' />"><c:out
+										value="${i}" /></a></li>&nbsp;
                     </c:otherwise>
-				</c:choose>
-			</c:forEach>
-  </ul>
-</nav>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</nav>
 
 		<p>
 			<a href="<c:url value="/index" />">一覧に戻る</a>

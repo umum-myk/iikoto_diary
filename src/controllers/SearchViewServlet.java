@@ -60,19 +60,19 @@ public class SearchViewServlet extends HttpServlet {
 
 
 		em.close();
-        request.getSession().setAttribute("flush", search_number);
+		request.getSession().setAttribute("flush", search_number);
 
 		request.setAttribute("diarys_search", diarys_search);
 		request.setAttribute("diarys_count", diarys_count);
 		request.setAttribute("page", page);
 		request.setAttribute("search", search);
 
-        // フラッシュメッセージがセッションスコープにセットされていたら
-        if(request.getSession().getAttribute("flush") != null) {
-            // セッションスコープ内のフラッシュメッセージをリクエストスコープに保存し、セッションスコープからは削除する
-            request.setAttribute("flush", request.getSession().getAttribute("flush"));
-            request.getSession().removeAttribute("flush");
-        }
+		// フラッシュメッセージがセッションスコープにセットされていたら
+		if(request.getSession().getAttribute("flush") != null) {
+			// セッションスコープ内のフラッシュメッセージをリクエストスコープに保存し、セッションスコープからは削除する
+			request.setAttribute("flush", request.getSession().getAttribute("flush"));
+			request.getSession().removeAttribute("flush");
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/month/search.jsp");
 		rd.forward(request, response);

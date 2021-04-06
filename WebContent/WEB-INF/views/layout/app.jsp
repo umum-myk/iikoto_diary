@@ -57,7 +57,7 @@
                 ${param.content}
             </div>
             <div id="footer" class="fixed-bottom">
-                by Mayuka Ui.
+                by UMUM-MYK.
             </div>
 
 

@@ -9,6 +9,29 @@
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<version>1.5</version>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.36</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://localhost/iikoto_diary?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8</url>
+					<username>repuser</username>
+					<password>reppass</password>
+					<srcFiles>
+						<srcFile>${basedir}/data/dump-iikoto_diary-202104030626.sql</srcFile>
+					</srcFiles>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -53,20 +76,20 @@
 			<version>1.18.8</version>
 			<scope>provided</scope>
 		</dependency>
-		        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>4.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-	<dependency>
-		<groupId>org.webjars</groupId>
-		<artifactId>popper.js</artifactId>
-		<version>1.14.1</version>
-	</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>popper.js</artifactId>
+			<version>1.14.1</version>
+		</dependency>
 	</dependencies>
 </project>
