@@ -54,7 +54,7 @@
 						<c:out value="${i}" />&nbsp;
                     </c:when>
 					<c:otherwise>
-						<a href="<c:url value='/search?page=${i}&mon=${mon}' />"><c:out
+						<a href="<c:url value='/search?page=${i}&mon=${mon}&year=${year}' />"><c:out
 								value="${i}" /></a>&nbsp;
                     </c:otherwise>
 				</c:choose>

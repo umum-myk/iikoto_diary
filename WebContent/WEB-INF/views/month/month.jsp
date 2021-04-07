@@ -10,8 +10,9 @@
 				<div class="col-10"></div>
 				<div class="col-2">
 					<form method="GET" action="<c:url value="/sort" />">
-						<button class="btn btn-outline-success" type="submit">スタンプ付でソート</button>
+						<button class="btn btn-primary" type="submit">スタンプ付でソート</button>
 						<input type="hidden" name="mon" value="${mon}">
+						<input type="hidden" name="year" value="${year}">
 					</form>
 				</div>
 			</div>
@@ -65,7 +66,7 @@
                     </c:when>
 						<c:otherwise>
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='/month?page=${i}&mon=${mon}' />"><c:out
+								href="<c:url value='/month?page=${i}&mon=${mon}&year=${year}' />"><c:out
 										value="${i}" /></a></li>&nbsp;
                     </c:otherwise>
 					</c:choose>

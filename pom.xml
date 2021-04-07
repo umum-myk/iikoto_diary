@@ -27,7 +27,7 @@
 					<username>repuser</username>
 					<password>reppass</password>
 					<srcFiles>
-						<srcFile>${basedir}/data/dump-iikoto_diary-202104030626.sql</srcFile>
+						<srcFile>${basedir}/data/dump-iikoto_diary-202104072222.sql</srcFile>
 					</srcFiles>
 				</configuration>
 			</plugin>

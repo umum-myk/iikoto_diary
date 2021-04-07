@@ -52,7 +52,7 @@
                     </c:when>
 						<c:otherwise>
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='/sort?page=${i}&mon=${mon}' />"><c:out
+								href="<c:url value='/sort?page=${i}&mon=${mon}&year=${year}' />"><c:out
 										value="${i}" /></a></li>&nbsp;
                     </c:otherwise>
 					</c:choose>

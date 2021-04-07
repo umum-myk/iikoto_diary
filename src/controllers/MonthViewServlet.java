@@ -43,10 +43,12 @@ public class MonthViewServlet extends HttpServlet {
 		}
 
 		Integer mon =Integer.parseInt(request.getParameter("mon"));
+		Integer year =Integer.parseInt(request.getParameter("year"));
 
 		//月毎のリスト
 		List<Diary> diarys_month = em.createNamedQuery("getDiarysMonth", Diary.class)
 				.setParameter("MonthFind",mon)
+				.setParameter("YearFind",year)
 				.setFirstResult(10 * (page - 1))
 				.setMaxResults(10)
 				.getResultList();
@@ -64,6 +66,7 @@ public class MonthViewServlet extends HttpServlet {
 		request.setAttribute("diarys_count", diarys_count);
 		request.setAttribute("page", page);
 		request.setAttribute("mon", mon);
+		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/month/month.jsp");

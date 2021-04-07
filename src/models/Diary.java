@@ -35,15 +35,15 @@ import lombok.Setter;
     ),
 @NamedQuery(
         name = "getMonth",
-        query = "SELECT DISTINCT d FROM Diary AS d GROUP BY d.createMonth"
+        query = "SELECT DISTINCT d FROM Diary AS d GROUP BY d.createMonth , d.createYear"
     ),
 @NamedQuery(
         name = "getDiarysMonth",
-        query = "SELECT d FROM Diary AS d  WHERE d.createMonth = :MonthFind"
+        query = "SELECT d FROM Diary AS d  WHERE d.createMonth = :MonthFind AND d.createYear = :YearFind "
     ),
 @NamedQuery(
         name = "getSortMonth",
-        query = "SELECT d FROM Diary AS d  WHERE d.createMonth = :MonthFind AND d.iine = 1"
+        query = "SELECT d FROM Diary AS d  WHERE d.createMonth = :MonthFind AND d.createYear = :YearFind AND d.iine = 1"
     ),
 @NamedQuery(
         name = "getDiarysSearch",

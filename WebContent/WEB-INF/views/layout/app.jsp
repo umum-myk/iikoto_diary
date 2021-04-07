@@ -20,24 +20,22 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<c:url value="/index" />">いいこと日記</a>
+    <a class="navbar-brand" href="<c:url value="/index" />">
+    <input type="image" src="/iikoto_diary/images/logo.png" ></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<c:url value="/index" />">Home</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            月別いいことページリンク
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
             <c:forEach var="month" items="${month}" varStatus="status">
             <form method="GET" class="dropdown-item" action="<c:url value="/month" />" class="dropdown-item">
-            <a href="<c:url value='/month?mon=${month.createMonth}' />">
+            <a href="<c:url value='/month?mon=${month.createMonth}&year=${month.createYear}' />">
              <fmt:formatDate value='${month.createDate}' pattern='yyyy-MM' /></a></form>
             </c:forEach>
             </li>
@@ -45,13 +43,8 @@
         </li>
       </ul>
           </div>
-
-
   </div>
 </nav>
-
-
-
 
             <div id="content">
                 ${param.content}
@@ -59,6 +52,5 @@
             <div id="footer" class="fixed-bottom">
                 by UMUM-MYK.
             </div>
-
 
 </html>

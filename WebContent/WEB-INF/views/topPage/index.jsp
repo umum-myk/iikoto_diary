@@ -7,11 +7,11 @@
 
 		<div class="pb-3">
 			<div class="row">
-				<div class="col-10">
+				<div class="col-9">
 					<form method="POST" action="<c:url value='/index' />"
 						class="position1">
 						<div class="form-row">
-							<div class="col-5">
+							<div class="col-6">
 								<input name="iikoto" class="form-control"
 									placeholder="今日のいいこと書き込みましょう！">
 							</div>
@@ -22,13 +22,14 @@
 					</form>
 				</div>
 
-				<div class="col-2">
+				<div class="col-3">
 					<form method="GET" class="d-flex"
 						action="<c:url value="/search" />">
-						<input class="form-control me-2" type="search"
-							placeholder="Search" aria-label="Search" name="search"
+						<input class="form-control"  type="search"
+							placeholder="検索文字を入力してください。" aria-label="Search" name="search"
 							value="${search}">
-						<button class="btn btn-outline-success" type="submit">Search</button>
+						<div class="col-auto">
+						<button class="btn btn-primary" type="submit" class="form-control">検索</button></div>
 					</form>
 				</div>
 			</div>

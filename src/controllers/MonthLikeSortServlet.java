@@ -43,10 +43,12 @@ public class MonthLikeSortServlet extends HttpServlet {
 		}
 
 		Integer mon =Integer.parseInt(request.getParameter("mon"));
+		Integer year =Integer.parseInt(request.getParameter("year"));
 
 		//月毎ソート
 		List<Diary> sort_month = em.createNamedQuery("getSortMonth", Diary.class)
 				.setParameter("MonthFind",mon)
+				.setParameter("YearFind",year)
 				.setFirstResult(10 * (page - 1))
 				.setMaxResults(10)
 				.getResultList();
@@ -65,6 +67,7 @@ public class MonthLikeSortServlet extends HttpServlet {
 		request.setAttribute("sort_month", sort_month);
 		request.setAttribute("diarys_count", diarys_count);
 		request.setAttribute("mon", mon);
+		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 
 
