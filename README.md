@@ -1,3 +1,5 @@
+![logo](https://user-images.githubusercontent.com/77877936/113877908-19775f00-97f4-11eb-8f87-5610a630b2ad.png)
+
 iikoto_diary
 ====
 Record iikoto every day and have a good mood!
@@ -10,6 +12,9 @@ The record can be deleted with the delete button.
 ![iikoto_diary_Demo](https://user-images.githubusercontent.com/77877936/113663190-91eefa80-96e4-11eb-9737-63f65a2fe899.gif)
 ## Requirement
 JDK1.8.0
+MySQL5.1.45
+Hibernate5.2.13.Final
+Maven3.8.1
 ## Usage
 Execute the SQL before running the test.
 Execute SQL with the mvn command.
