@@ -13,7 +13,7 @@ The record can be deleted with the delete button.
 ## Requirement
 JDK1.8.0  
 MySQL5.1.45  
-Hibernate5.2.13.Final  
+Tomcat8  
 Maven3.8.1
 ## Usage
 Execute the SQL before running the test.  
